@@ -164,18 +164,21 @@ void settle_ques()
 int main(int argc, char** argv)
 {
 
-	if (argc != 3)//参数不等于3个
+	if (argc != 3||argc != 5)//参数不正确
 	{
 		cout << "Illegal paramater number\n"
 			 << "Usage:\n"
 			 << "      sudoku.exe -c number --> generate n sudoku finals. \n"
 			 << "      sudoku.exe -s path --> Read sudoku from file in the given path,and solve them.\n"
-			 << "      sudoku.exe -p number --> produce sudoku problem into the given path(prepare for the sudoku game)\n"
+			 << "      sudoku.exe -n number --> produce sudoku problem into the given path(prepare for the sudoku game)\n"
+			 <<	"      sudoku.exe -n number -m number --> generate n sudoku unique finals with m level difficulty. \n"
+			 <<	"      sudoku.exe -n number -r number-number --> generate n sudoku unique finals which have m $. \n"
+			 <<	"      sudoku.exe -n number -u --> generate n sudoku unique finals. \n"
 			 << "      The charactre should be itself:such as C is not equal to c.\n";
 		return 1;
 	}
 
-	if (strcmp(argv[1], "-c") && strcmp(argv[1], "-s") && strcmp(argv[1],"-p"))
+	if (strcmp(argv[1], "-c") && strcmp(argv[1], "-s") && strcmp(argv[1],"-n"))
 	{
 		cout<< "Illegal paramater\n"
 			<< "The first parameter should be -c or -s or -p\n"
@@ -219,7 +222,7 @@ int main(int argc, char** argv)
 		return 0;
 	}
 
-	if (!strcmp(argv[1], "-p"))//default path ques.txt
+	if (!strcmp(argv[1], "-n"))//default path ques.txt
 	{
 		int len = strlen(argv[2]);
 		for (int i = 0; i < len; i++)
